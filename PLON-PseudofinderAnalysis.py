@@ -354,11 +354,11 @@ def delim(line):
 # THIS SAME SCRIPT CAN BE USED FOR BOTH SYM AND SOD ENDOLONGISPINUS RESULTS, JUST CHANGE THE FILENAME DESIGNATIONS/ADDRESSES
 '''
 ##### PROTEOME
-seq = open("/Users/arkadiygarber/Desktop/Ongoing_Research_Projects/Endosymbionts/PLON_MT/newAssembly/pseudofinder_sod/pseudoSOD_proteome.faa")
+seq = open("pseudofinder_proteome.faa")
 seq = fasta2(seq)
 
 blastDict = defaultdict(lambda: defaultdict(list))
-blast = open("/Users/arkadiygarber/Desktop/Ongoing_Research_Projects/Endosymbionts/PLON_MT/newAssembly/pseudofinder_sod/pseudoSOD_proteome.faa.blastP_output.tsv")
+blast = open("pseudofinder_proteome.faa.blastP_output.tsv")
 for i in blast:
     ls = i.rstrip().split("\t")
     geneLength = len(seq[ls[0]])
@@ -373,12 +373,12 @@ for i in blastDict.keys():
     MasterDict[i]["perc"] = perc
 
 ##### INTERGENIC
-ig = open("/Users/arkadiygarber/Desktop/Ongoing_Research_Projects/Endosymbionts/PLON_MT/newAssembly/pseudofinder_sod/pseudoSOD_intergenic.fasta")
+ig = open("pseudofinder_intergenic.fasta")
 ig = fasta2(ig)
 
 
 igDict = defaultdict(lambda: defaultdict(list))
-blast = open("/Users/arkadiygarber/Desktop/Ongoing_Research_Projects/Endosymbionts/PLON_MT/newAssembly/pseudofinder_sod/pseudoSOD_intergenic.fasta.blastX_output.tsv")
+blast = open("pseudofinder_intergenic.fasta.blastX_output.tsv")
 for i in blast:
     ls = i.rstrip().split("\t")
     aln = int(ls[9]) - int(ls[8])
@@ -394,7 +394,7 @@ for i in igDict.keys():
         MasterDict[i]["ig"] = "y"
 
 
-pseudos = open("/Users/arkadiygarber/Desktop/Ongoing_Research_Projects/Endosymbionts/PLON_MT/newAssembly/pseudofinder_sod/pseudoSOD_pseudos.gff")
+pseudos = open("pseudofinder_pseudos.gff")
 for i in pseudos:
     ls = i.rstrip().split("\t")
     if re.findall(r'fragmentation', i):
@@ -403,7 +403,7 @@ for i in pseudos:
         for j in LS:
             MasterDict[j]["fragment"] = "y"
 
-dnds = open("/Users/arkadiygarber/Desktop/Ongoing_Research_Projects/Endosymbionts/PLON_MT/newAssembly/pseudofinder_sod/pseudoSOD_dnds/dnds-summary.csv")
+dnds = open("pseudofinder_dnds/dnds-summary.csv")
 for i in dnds:
     ls = i.rstrip().split(",")
     if ls[2] != "dN":
@@ -416,7 +416,7 @@ for i in MasterDict.keys():
         MasterDict[i]["fragment"] = "n"
 
 
-out = open("/Users/arkadiygarber/Desktop/Ongoing_Research_Projects/Endosymbionts/PLON_MT/newAssembly/pseudofinder_sod/pseudoSOD_summary.csv", "w")
+out = open("pseudofinder_summary.csv", "w")
 out.write("orf,length,dn,ds,dnds,fragment,ig\n")
 for i in MasterDict.keys():
     out.write(i + "," + str(MasterDict[i]["perc"]) + "," + str(MasterDict[i]["dn"]) + "," + str(MasterDict[i]["ds"]) + "," +
