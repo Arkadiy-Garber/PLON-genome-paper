@@ -406,10 +406,10 @@ for i in pseudos:
 dnds = open("pseudofinder_dnds/dnds-summary.csv")
 for i in dnds:
     ls = i.rstrip().split(",")
-    if ls[2] != "dN":
-        MasterDict[ls[0]]["dn"] = float(ls[2])
-        MasterDict[ls[0]]["ds"] = float(ls[3])
-        MasterDict[ls[0]]["dnds"] = float(ls[4])
+    if ls[3] != "dN":
+        MasterDict[ls[0]]["dn"] = float(ls[3])
+        MasterDict[ls[0]]["ds"] = float(ls[4])
+        MasterDict[ls[0]]["dnds"] = float(ls[5])
 
 for i in MasterDict.keys():
     if MasterDict[i]["fragment"] != "y":
