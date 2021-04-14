@@ -708,7 +708,31 @@ for i in DIR:
         print("")
 '''
 
+# CALCULTING ANI FOR SYMBIOPECTOBACTERIUM GENOMES
+# THE masterDir DIRECTORY HAS MANY FOLDERS. SOME OF THESE, WITH 'prokka' IN THEIR NAMES, HAVE BLAST OUTPUT FILES.
+# THESE BLAST OUTPUT FILES ARE THE RESULTS OF BLAST SEARCH OF EACH SYMBIOPECTOBACTERIUM ENDOSYMBIONT AGAINST ALL OTHER SYMBIOPECTOBACTERIUM ENDOSYMBIONT
+'''
+#PAIRWISE ANI
+blastDict = defaultdict(lambda: defaultdict(list))
+masterDir = os.listdir("/Users/arkadiygarber/Desktop/Ongoing_Research_Projects/Endosymbionts/otherPecto/contigs")
+for folder in masterDir:
+    if re.findall(r'prokka', folder):
+        DIR = os.listdir("/Users/arkadiygarber/Desktop/Ongoing_Research_Projects/Endosymbionts/otherPecto/contigs/%s" % folder)
+        for i in DIR:
+            if re.findall(r'blast', i):
+                blast = open("/Users/arkadiygarber/Desktop/Ongoing_Research_Projects/Endosymbionts/otherPecto/contigs/%s/%s" % (folder, i))
+                for j in blast:
+                    ls = j.rstrip().split("\t")
+                    blastDict[folder][i].append(float(ls[2]))
 
+out = open("/Users/arkadiygarber/Desktop/Ongoing_Research_Projects/Endosymbionts/otherPecto/ANI.csv", "w")
+for i in blastDict.keys():
+    for j in blastDict[i]:
+        print(i + "\t\t" + j + "\t\t" + str(statistics.mean(blastDict[i][j])))
+        out.write(i + "," + j + "," + str(statistics.mean(blastDict[i][j])) + "\n")
+    print("")
+out.close()
+'''
 
 
 
