@@ -1,6 +1,6 @@
 # PLON-genome-paper
 
-Python scripts and files used in the analysis of P. longispinus endosymbionts. The relevant publication: [Garber,A.I. et al. (2021) The evolution of interdependence in a four-way mealybug symbiosis](https://academic.oup.com/gbe/advance-article/doi/10.1093/gbe/evab123/6290711).
+Python scripts and files used in the analysis of P. longispinus endosymbionts. The relevant publication: [Garber, A.I. et al. (2021) The evolution of interdependence in a four-way mealybug symbiosis](https://academic.oup.com/gbe/advance-article/doi/10.1093/gbe/evab123/6290711).
 
 Due to limits in how much data can be uploaded here, there are only a few files used in the analyses present in this repository: raw assembly of endosymbiont genomes, output from [SprayNPray](https://github.com/Arkadiy-Garber/SprayNPray), and an assembly graph.
 
